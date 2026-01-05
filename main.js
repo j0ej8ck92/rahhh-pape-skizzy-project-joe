@@ -18,8 +18,8 @@ playerOptions.forEach(option => {
   }
 );
   
-let playerScore = 0;
-let computerScore = 0;
+let playerScore = 1;
+let computerScore = 1;
 
 const playRound = (player,computer) => { //Parameters going into playRound function
 
@@ -50,7 +50,7 @@ const playRound = (player,computer) => { //Parameters going into playRound funct
 
 function gameOver(){
   const gameResult = document.querySelector(".game-over");
-  if((playerScore === 10 ) || (computerScore === 10)) {
+  if((playerScore === 6 ) || (computerScore === 6)) {
     gameResult.textContent = "GAME OVER!";
   }
 
