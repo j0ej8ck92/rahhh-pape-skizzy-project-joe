@@ -49,6 +49,7 @@ const playRound = (player,computer) => { //Parameters going into playRound funct
 }
 
 function gameOver(){
+  
   const gameResult = document.querySelector(".game-over");
   if((playerScore === 6 ) || (computerScore === 6)) {
     gameResult.textContent = "GAME OVER!";
@@ -60,6 +61,7 @@ function gameOver(){
 }
 
 const restartGame = () => {
+
   const restartBtn = document.getElementById("restart-btn"); 
   restartBtn.textContent = "Restart";
   restartBtn.addEventListener("click", () => {
