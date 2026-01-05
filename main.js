@@ -1,64 +1,99 @@
-const choices = ["Rock", "Paper","Scissors"];
+const choices = ["rock", "paper","scissors"];
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
+const playerOptions = [rock, paper, scissors];
 
-function getCompChoice() {
+const fireOff = (event) => {
+
+  const playerChoice = event.target.className;
+  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+  playRound(playerChoice, computerChoice); //Arguments going into playRound function
+  gameOver();
+}
+    
+playerOptions.forEach(option => {
+
+      option.addEventListener("click", fireOff) 
+  }
+);
   
-  return choices[Math.floor(Math.random() * choices.length)];
-
-}
-
-function getPlayChoice() {
-        
-  let input = prompt("Rock, Paper, or Scissors");
-
-  return input;
-
-}
-
-const humanChoice = getPlayChoice();
-const computerChoice = getCompChoice();
-let humanScore = 0;
+let playerScore = 0;
 let computerScore = 0;
 
-function playRound(humanChoice, computerChoice) {
-        
-  if (humanChoice === computerChoice) {
+const playRound = (player,computer) => { //Parameters going into playRound function
 
-    return "Draw! It's a Tie!";
+  let playerScoreNumber = document.querySelector(".p-score");
+  let computerScoreNumber = document.querySelector(".c-score");
+  const result = document.querySelector(".result");
+        
+  if (player === computer) {
+
+    result.textContent = "Draw! It's a Tie!";
   }
 
-  else if ( (humanChoice === "Rock" && computerChoice === "Scissors") ||
-            (humanChoice === "Scissors" && computerChoice === "Paper") ||
-            (humanChoice === "Paper" && computerChoice === "Rock") ) {
+  else if ( (player === "rock" && computer === "scissors") ||
+            (player === "scissors" && computer === "paper") ||
+            (player === "paper" && computer === "rock") ) {
 
-    humanScore++;
-
-    return `Player Wins! ${humanChoice} beats ${computerChoice}!`;
+    playerScoreNumber.textContent = playerScore++;
+    result.textContent = `Player Wins! ${player} beats ${computer}!`;
 
   }
 
   else  {
 
-    computerScore++;
-
-    return `Computer Wins! ${humanChoice} beats ${computerChoice}!`;
-          
+    computerScoreNumber.textContent = computerScore++;
+    result.textContent = `Computer Wins! ${computer} beats ${player}!`;
   }
-
 }
 
-function playGame() {
-
-  for(let i = 0; i <=4; i++) {
-
-    console.log(playRound(getPlayChoice(), getCompChoice()));
-    console.log(humanScore);
-    console.log(computerScore);
-
+function gameOver(){
+  const gameResult = document.querySelector(".game-over");
+  if((playerScore === 10 ) || (computerScore === 10)) {
+    gameResult.textContent = "GAME OVER!";
   }
 
+  else {
+    restartGame();
+  }
 }
 
-playGame();
+const restartGame = () => {
+  const restartBtn = document.getElementById("restart-btn"); 
+  restartBtn.textContent = "Restart";
+  restartBtn.addEventListener("click", () => {
+    window.location.reload();
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
